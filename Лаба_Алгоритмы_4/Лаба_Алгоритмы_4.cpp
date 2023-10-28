@@ -1,35 +1,23 @@
-﻿#include "Header.h"
-
+﻿#include "Func_array.h"
 int main() {
-    srand((time(nullptr)));
+	vector<int> vec;
+	vec = genArray(10);
+	printArr(vec);
+	printArr(insertSort(vec));
+	printArr(selectionSort(vec));
+	double* arr = new double[10]{8,10,5,4,7,1,3,2,6,9};
+	printArr(arr, 10);
+	bubbleSort(arr, 10);
+	printArr(arr,10);
+	printArr(bubbleSort(vec));
+	double* arr1 = new double[10] {8, 10, 5, 4, 7, 1, 3, 2, 6, 9};
+	printArr(arr1, 10);
+	hoaraSort(arr1, 0, 9,1);
+	printArr(arr1,10);
+	cout << endl;
+	printArr(hoaraSort(vec,0,size(vec)-1));
+}
 
-    const int arraySize = 100;
-    std::vector<int> arr;
-
-    for (int i = 0; i < arraySize; ++i) {
-        int randomNumber;
-        bool isUnique;
-
-        do {
-            randomNumber = std::rand() % 100; // Генерируем случайное число от 0 до 9999
-            isUnique = true;
-
-            // Проверяем, что число уникально в массиве
-            for (int j = 0; j < i; ++j) {
-                if (arr[j] == randomNumber) {
-                    isUnique = false;
-                    break;
-                }
-            }
-        } while (!isUnique);
-
-        arr.push_back(randomNumber);
-    }
-
-    // Выводим массив на экран
-    for (int i = 0; i < arraySize; ++i) {
-        std::cout << arr[i] << endl;
-    }
-
+void Laba4() {
 
 }
