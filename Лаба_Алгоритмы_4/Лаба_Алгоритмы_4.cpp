@@ -15,7 +15,7 @@ int main() {
 	hoaraSort(arr1, 0, 9,1);
 	printArr(arr1,10);
 	cout << endl;
-	printArr(hoaraSort(vec,0,size(vec)-1));
+	printArr(hoaraSort(vec));
 }
 
 void Laba4() {

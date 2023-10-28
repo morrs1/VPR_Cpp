@@ -193,36 +193,39 @@ void hoaraSort(T* a, int first, int last,int n)
         hoaraSort(a, first, j,n);
 }
 
-template<typename T>
-vector<T> hoaraSort(vector<T> vec, int first, int last)
-{
-    int i = first, j = last;
-    double tmp, x = vec[(first + last) / 2];
+template <typename T>
+std::vector<T> hoaraSort(const std::vector<T>& vec) {
+    if (vec.size() <= 1) {
+        return vec;
+    }
 
-    do {
-        while (vec[i] < x)
-            i++;
-        while (vec[j] > x)
-            j--;
+    // Выбираем опорный элемент (pivot)
+    T pivot = vec[vec.size() / 2];
 
-        if (i <= j)
-        {
-            if (i < j)
-            {
-                tmp = vec[i];
-                vec[i] = vec[j];
-                vec[j] = tmp;
-            }
-            i++;
-            j--;
+    std::vector<T> left, right, equal;
+    for (const T& element : vec) {
+        if (element < pivot) {
+            left.push_back(element);
         }
-    } while (i <= j);
+        else if (element > pivot) {
+            right.push_back(element);
+        }
+        else {
+            equal.push_back(element);
+        }
+    }
 
-    if (i < last)
-        hoaraSort(vec, i, last);
-    if (first < j)
-        hoaraSort(vec, first, j);
-    if ((i>last) && (first > j)) return vec;
+    // Рекурсивно сортируем левую и правую части
+    left = hoaraSort(left);
+    right = hoaraSort(right);
+
+    // Собираем отсортированный вектор
+    std::vector<T> sortedVec;
+    sortedVec.insert(sortedVec.end(), left.begin(), left.end());
+    sortedVec.insert(sortedVec.end(), equal.begin(), equal.end());
+    sortedVec.insert(sortedVec.end(), right.begin(), right.end());
+
+    return sortedVec;
 }
 
 
