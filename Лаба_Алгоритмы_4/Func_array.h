@@ -8,7 +8,7 @@ using namespace std;
 
 ////Генерация массива рандомными значениями(неповторяющимися)
 
-vector<int> genArray(int size) {
+vector<int> genRandArray(int size) {
     srand(time(nullptr));
     vector<int> arr;
 
