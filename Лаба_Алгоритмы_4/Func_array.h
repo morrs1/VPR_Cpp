@@ -4,6 +4,7 @@
 #include <vector>
 #include <chrono>
 #include<string>
+#include <cmath>
 using namespace std;
 
 ////Генерация массива рандомными значениями(неповторяющимися)
@@ -18,6 +19,33 @@ vector<int> genRandArray(int size) {
 
         do {
             randomNumber = std::rand() % size; // Генерируем случайное число от 0 до size-1
+            isUnique = true;
+
+            // Проверяем, что число уникально в массиве
+            for (int j = 0; j < i; ++j) {
+                if (arr[j] == randomNumber) {
+                    isUnique = false;
+                    break;
+                }
+            }
+        } while (!isUnique);
+
+        arr.push_back(randomNumber);
+    }
+
+    return arr;
+}
+
+vector<double> genRandDoubleArray(int size) {
+    srand(time(nullptr));
+    vector<double> arr;
+
+    for (int i = 0; i < size; ++i) {
+        double randomNumber;
+        bool isUnique;
+
+        do {
+            randomNumber = std::rand() % size - 10; // Генерируем случайное число от 0 до size-1
             isUnique = true;
 
             // Проверяем, что число уникально в массиве
@@ -180,7 +208,7 @@ void hoaraSort(T* a, int first, int last,int n)
 {
 
     int i = first, j = last;
-    double tmp, x = a[(first + last) / 2];
+    double tmp, x = a[int((first + last) / 2)];
 
     do {
         while (a[i] < x)
@@ -235,6 +263,8 @@ std::vector<T> hoaraSort(const std::vector<T>& vec, int *iCount4_1,int * comCoun
         }
     }
 
+
+
     // Рекурсивно сортируем левую и правую части
     left = hoaraSort(left, iCount4_1, comCount4_1, excCount4_1);
     right = hoaraSort(right, iCount4_1, comCount4_1, excCount4_1);
@@ -246,6 +276,95 @@ std::vector<T> hoaraSort(const std::vector<T>& vec, int *iCount4_1,int * comCoun
     sortedVec.insert(sortedVec.end(), right.begin(), right.end());
 
     return sortedVec;
+}
+///////////////////////////
+
+std::vector<double> hoaraSort1(const std::vector<double> vec) {
+    if (vec.size() <= 1) {
+        return vec;
+    }
+    
+    // Выбираем опорный элемент (pivot)
+    double pivot = vec[vec.size() / 2];
+
+    std::vector<double> left, right, equal;
+    for (auto element : vec) {
+       
+        
+        if (abs(element) > abs(pivot)) {
+            
+            left.push_back(element);
+        }
+        else if (abs(element) < abs(pivot)) {
+            
+            right.push_back(element);
+        }
+
+        else {
+            equal.push_back(element);
+            
+        }
+    }
+
+
+
+    // Рекурсивно сортируем левую и правую части
+    left = hoaraSort1(left);
+    right = hoaraSort1(right);
+
+    // Собираем отсортированный вектор
+    std::vector<double> sortedVec;
+    sortedVec.insert(sortedVec.end(), left.begin(), left.end());
+    sortedVec.insert(sortedVec.end(), equal.begin(), equal.end());
+    sortedVec.insert(sortedVec.end(), right.begin(), right.end());
+
+    return sortedVec;
+}
+
+
+vector<int> genSortedArray(int size) {
+    vector <int> vec;
+    for (int i = 0; i < size; i++) {
+        vec.push_back(i);
+    }
+    return vec;
+}
+
+vector<int> genReverseSortedArray(int size) {
+    vector <int> vec;
+    for (int i = size - 1; i >= 0; i--) {
+        vec.push_back(i);
+    }
+    return vec;
+}
+
+vector<int> genPartSortedArray(int size, double partSort) {
+    srand(time(nullptr));
+    vector <int> arr;
+    for (int i = 0; i < size * partSort; i++) {
+        arr.push_back(i);
+    }
+
+    for (int i = size * partSort; i < size; ++i) {
+        int randomNumber;
+        bool isUnique;
+
+        do {
+            randomNumber = std::rand() % size; // Генерируем случайное число до size-1
+            isUnique = true;
+
+            // Проверяем, что число уникально в массиве
+            for (int j = 0; j < i; ++j) {
+                if (arr[j] == randomNumber) {
+                    isUnique = false;
+                    break;
+                }
+            }
+        } while (!isUnique);
+
+        arr.push_back(randomNumber);
+    }
+    return arr;
 }
 
 

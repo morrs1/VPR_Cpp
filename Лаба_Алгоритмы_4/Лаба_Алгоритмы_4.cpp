@@ -1,8 +1,5 @@
 ﻿#include "Func_array.h"
-vector<int> genSortedArray(int size);
-vector<int> genReverseSortedArray(int size);
-vector<int> genPartSortedArray(int size, double partSort);
-void task2(int len, int flag, double partSort);
+
 void task1(int len) {
 	vector<int> vec;
 	vec = genRandArray(len);
@@ -87,25 +84,6 @@ void task1(int len) {
 	cout << endl << "Число итераций, сравнений и обменов: " << *iCount4_1 << " " << *comCount4_1 << " " << *excCount4_1 << endl << endl << endl;
 
 }
-
-int main() {
-	setlocale(0, "");
-	cout << "/////Task1/////" << endl;
-	task1(20);
-	task1(500);
-	task1(1000);
-	task1(3000);
-	task1(5000);
-	task1(10000);
-	
-	cout << "/////Task2/////" << endl;
-	task2(10000, 0, 0.75);
-	task2(10000, 1, 0.75);
-	task2(10000, 2, 0.25);
-	task2(10000, 2, 0.5);
-	task2(10000,2,0.75);
-}
-
 void task2(int len, int flag, double partSort) {
 	vector<int> vec;
 	cout << endl;
@@ -196,51 +174,36 @@ void task2(int len, int flag, double partSort) {
 	cout << dur.count() << " " << endl;
 	
 }
+int main() {
+	setlocale(0, "");
+	
+	cout << "/////Task1/////" << endl;
+	task1(20);
+	task1(500);
+	task1(1000);
+	task1(3000);
+	task1(5000);
+	task1(10000);
+	
+	cout << "/////Task2/////" << endl;
+	task2(10000, 0, 0.75);
+	task2(10000, 1, 0.75);
+	task2(10000, 2, 0.25);
+	task2(10000, 2, 0.5);
+	task2(10000,2,0.75);
+	
+	cout << "/////Task3/////" << endl;
+	vector <double> vec;
+	vec = genRandDoubleArray(20);
+	cout << "Неотсортированный массив: ";
+	printArr(vec);
+	cout << "Отсортированный массив: ";
+	printArr(hoaraSort1(vec));
+}
 
-	vector<int> genSortedArray(int size){
-		vector <int> vec;
-		for (int i = 0; i < size; i++) {
-			vec.push_back(i);
-		}
-		return vec;
-	}
 
-	vector<int> genReverseSortedArray(int size) {
-		vector <int> vec;
-		for (int i = size-1; i >= 0; i--) {
-			vec.push_back(i);
-		}
-		return vec;
-	}
 
-	vector<int> genPartSortedArray(int size,double partSort) {
-		srand(time(nullptr));
-		vector <int> arr;
-		for (int i = 0; i < size*partSort; i++) {
-			arr.push_back(i);
-		}
-
-		for (int i = size*partSort; i < size; ++i) {
-			int randomNumber;
-			bool isUnique;
-
-			do {
-				randomNumber = std::rand() % size; // Генерируем случайное число до size-1
-				isUnique = true;
-
-				// Проверяем, что число уникально в массиве
-				for (int j = 0; j < i; ++j) {
-					if (arr[j] == randomNumber) {
-						isUnique = false;
-						break;
-					}
-				}
-			} while (!isUnique);
-
-			arr.push_back(randomNumber);
-		}
-		return arr;
-	}
+	
 
 
 
