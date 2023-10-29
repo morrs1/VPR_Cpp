@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <chrono>
+#include<string>
 using namespace std;
 
 ////Генерация массива рандомными значениями(неповторяющимися)
@@ -67,18 +69,23 @@ void insertSort(T *arr, int n)
 }
 
 
-vector<int> insertSort(vector<int> arr)
+vector<int> insertSort(vector<int> arr,int * iCount, int* comCount, int* excCount)
 {
     for (int i = 0; i < size(arr); ++i)
     {
+        
         int j = i;
         int x = arr[i];
         while ((j > 0) && (arr[j - 1] > x))
         {
+            *iCount += 1;
+            *comCount += 1;
             arr[j] = arr[j - 1];
+            *excCount += 1;
             j--;
         }
         arr[j] = x;
+        *excCount += 1;
     }
     return arr;
 }
@@ -104,7 +111,7 @@ void selectionSort(T* num, int size)
     }
 }
 
-vector<int> selectionSort(vector<int> vec)
+vector<int> selectionSort(vector<int> vec,int * iCount2_1, int *comCount2_1, int *excCount2_1)
 {
     int min, temp; // для поиска минимального элемента и для обмена
     for (int i = 0; i < size(vec) - 1; i++)
@@ -113,10 +120,14 @@ vector<int> selectionSort(vector<int> vec)
         // ищем минимальный элемент чтобы поместить на место i-ого
         for (int j = i + 1; j < size(vec); j++)  // для остальных элементов после i-ого
         {
-            if (vec[j] < vec[min]) // если элемент меньше минимального,
-                min = j;       // запоминаем его индекс в min
+            *iCount2_1 += 1;
+            *comCount2_1 += 1;
+            if (vec[j] < vec[min]) { // если элемент меньше минимального,
+                min = j;// запоминаем его индекс в min
+            }   
         }
         temp = vec[i];      // меняем местами i-ый и минимальный элементы
+        *excCount2_1 += 1;
         vec[i] = vec[min];
         vec[min] = temp;
     }
@@ -142,14 +153,17 @@ void bubbleSort(T* arr, int size) {
 }
 
 template <typename T>
-vector<T> bubbleSort(vector<T> arr) {
+vector<T> bubbleSort(vector<T> arr, int * iCount3_1, int * comCount3_1, int *excCount3_1) {
     int temp; // временная переменная для обмена элементов местами
 
     // Сортировка массива пузырьком
     for (int i = 0; i < size(arr) - 1; i++) {
         for (int j = 0; j < size(arr) - i - 1; j++) {
+            *iCount3_1 += 1;
+            *comCount3_1 += 1;
             if (arr[j] > arr[j + 1]) {
                 // меняем элементы местами
+                *excCount3_1 += 1;
                 temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
@@ -194,30 +208,36 @@ void hoaraSort(T* a, int first, int last,int n)
 }
 
 template <typename T>
-std::vector<T> hoaraSort(const std::vector<T>& vec) {
+std::vector<T> hoaraSort(const std::vector<T>& vec, int *iCount4_1,int * comCount4_1, int *excCount4_1) {
     if (vec.size() <= 1) {
         return vec;
     }
-
+    *iCount4_1 += 1;
     // Выбираем опорный элемент (pivot)
     T pivot = vec[vec.size() / 2];
 
     std::vector<T> left, right, equal;
     for (const T& element : vec) {
+        *iCount4_1 += 1;
+        *comCount4_1 += 2;
         if (element < pivot) {
+            *excCount4_1 += 1;
             left.push_back(element);
         }
         else if (element > pivot) {
+            *excCount4_1 += 1;
             right.push_back(element);
         }
+        
         else {
             equal.push_back(element);
+            *excCount4_1 += 1;
         }
     }
 
     // Рекурсивно сортируем левую и правую части
-    left = hoaraSort(left);
-    right = hoaraSort(right);
+    left = hoaraSort(left, iCount4_1, comCount4_1, excCount4_1);
+    right = hoaraSort(right, iCount4_1, comCount4_1, excCount4_1);
 
     // Собираем отсортированный вектор
     std::vector<T> sortedVec;
