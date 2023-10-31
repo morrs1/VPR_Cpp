@@ -368,3 +368,90 @@ vector<int> genPartSortedArray(int size, double partSort) {
 }
 
 
+template<typename T>
+int linearSearch(T * arr, int size, T key) {
+    for (int i = 0; i < size; i++)
+        if (arr[i] == key)
+            return i;
+    return -1;
+}
+
+template<typename T>
+int linearSearch(vector<T> vec, T key) {
+    for (int i = 0; i < size(vec); i++)
+        if (vec[i] == key)
+            return i;
+    return -1;
+}
+
+template<typename T>
+int linearSearch1(vector<T> vec, T key, int * iCount) {
+    for (int i = 0; i < size(vec); i++) {
+        if (vec[i] == key)
+            return i;
+            *iCount += 1;
+    }
+    return -1;
+    
+}
+
+
+int binarySearch(vector<int>arr, int left, int right, int key)
+{
+    int midd = 0;
+    while (1)
+    {
+        
+        midd = int((left + right) / 2);
+
+        if (key < arr[midd])       // если искомое меньше значени€ в €чейке
+            right = midd - 1;      // смещаем правую границу поиска
+        else if (key > arr[midd])  // если искомое больше значени€ в €чейке
+            left = midd + 1;    // смещаем левую границу поиска
+        else                       // иначе (значени€ равны)
+            return midd;           // функци€ возвращает индекс €чейки
+
+        if (left > right)          // если границы сомкнулись 
+            return -1;
+    }
+}
+
+
+int binarySearch1(vector<int>arr, int left, int right, int key,int * iCount)
+{
+    int midd = 0;
+    while (1)
+    {
+        *iCount += 1;
+        midd = int((left + right) / 2);
+
+        if (key < arr[midd])       // если искомое меньше значени€ в €чейке
+            right = midd - 1;      // смещаем правую границу поиска
+        else if (key > arr[midd])  // если искомое больше значени€ в €чейке
+            left = midd + 1;    // смещаем левую границу поиска
+        else                       // иначе (значени€ равны)
+            return midd;           // функци€ возвращает индекс €чейки
+
+        if (left > right)          // если границы сомкнулись 
+            return -1;
+    }
+}
+
+
+
+size_t barierSearch(vector<int> arr, int value, int * comCount) {
+    if (size(arr) != 0) {
+        int last = arr[size(arr) - 1]; //—охраним прежний элемент массива
+        arr[size(arr) - 1] = value; //√арантируем, что value есть в массиве
+        //≈сть гаранти€ того, что элемент есть в массиве, значит индекс можно не провер€ть
+        size_t i = 0;
+        for (i = 0; arr[i] != value; ++i) { *comCount += 1;//ќдно условие в цикле
+        }
+        arr[size(arr) - 1] = last; //¬осстанавливаем последний элемент
+        
+        if (i != (size(arr) - 1) || value == last) { //Ќе уткнулись в барьер или последний элемент был искомым
+            return i;
+        }
+    }
+    return numeric_limits<size_t>::max();
+}
