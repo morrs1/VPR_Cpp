@@ -6,8 +6,8 @@
 #include<string>
 #include <cmath>
 using namespace std;
-
-////Генерация массива рандомными значениями(неповторяющимися)
+setlocale(0, "");
+////ГѓГҐГ­ГҐГ°Г Г¶ГЁГї Г¬Г Г±Г±ГЁГўГ  Г°Г Г­Г¤Г®Г¬Г­Г»Г¬ГЁ Г§Г­Г Г·ГҐГ­ГЁГїГ¬ГЁ(Г­ГҐГЇГ®ГўГІГ®Г°ГїГѕГ№ГЁГ¬ГЁГ±Гї)
 
 vector<int> genRandArray(int size) {
     srand(time(nullptr));
@@ -18,10 +18,10 @@ vector<int> genRandArray(int size) {
         bool isUnique;
 
         do {
-            randomNumber = std::rand() % size; // Генерируем случайное число от 0 до size-1
+            randomNumber = std::rand() % size; // ГѓГҐГ­ГҐГ°ГЁГ°ГіГҐГ¬ Г±Г«ГіГ·Г Г©Г­Г®ГҐ Г·ГЁГ±Г«Г® Г®ГІ 0 Г¤Г® size-1
             isUnique = true;
 
-            // Проверяем, что число уникально в массиве
+            // ГЏГ°Г®ГўГҐГ°ГїГҐГ¬, Г·ГІГ® Г·ГЁГ±Г«Г® ГіГ­ГЁГЄГ Г«ГјГ­Г® Гў Г¬Г Г±Г±ГЁГўГҐ
             for (int j = 0; j < i; ++j) {
                 if (arr[j] == randomNumber) {
                     isUnique = false;
@@ -45,10 +45,10 @@ vector<double> genRandDoubleArray(int size) {
         bool isUnique;
 
         do {
-            randomNumber = std::rand() % size - 10; // Генерируем случайное число от 0 до size-1
+            randomNumber = std::rand() % size - 10; // ГѓГҐГ­ГҐГ°ГЁГ°ГіГҐГ¬ Г±Г«ГіГ·Г Г©Г­Г®ГҐ Г·ГЁГ±Г«Г® Г®ГІ 0 Г¤Г® size-1
             isUnique = true;
 
-            // Проверяем, что число уникально в массиве
+            // ГЏГ°Г®ГўГҐГ°ГїГҐГ¬, Г·ГІГ® Г·ГЁГ±Г«Г® ГіГ­ГЁГЄГ Г«ГјГ­Г® Гў Г¬Г Г±Г±ГЁГўГҐ
             for (int j = 0; j < i; ++j) {
                 if (arr[j] == randomNumber) {
                     isUnique = false;
@@ -63,7 +63,7 @@ vector<double> genRandDoubleArray(int size) {
     return arr;
 }
 
-//////Печатать массив 
+//////ГЏГҐГ·Г ГІГ ГІГј Г¬Г Г±Г±ГЁГў 
 template <typename T>
 void printArr(const T& container) {
     for (const auto& element : container) {
@@ -79,7 +79,7 @@ void printArr(T* arr, int n) {
     cout << endl;
 }
 
-////Сортировка вставками 
+////Г‘Г®Г°ГІГЁГ°Г®ГўГЄГ  ГўГ±ГІГ ГўГЄГ Г¬ГЁ 
 template <typename T>
 void insertSort(T *arr, int n)
 {
@@ -119,21 +119,21 @@ vector<int> insertSort(vector<int> arr,int * iCount, int* comCount, int* excCoun
 }
 
 
-////Сортировка выбором 
+////Г‘Г®Г°ГІГЁГ°Г®ГўГЄГ  ГўГ»ГЎГ®Г°Г®Г¬ 
 template <typename T>
 void selectionSort(T* num, int size)
 {
-    int min, temp; // для поиска минимального элемента и для обмена
+    int min, temp; // Г¤Г«Гї ГЇГ®ГЁГ±ГЄГ  Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  ГЁ Г¤Г«Гї Г®ГЎГ¬ГҐГ­Г 
     for (int i = 0; i < size - 1; i++)
     {
-        min = i; // запоминаем индекс текущего элемента
-        // ищем минимальный элемент чтобы поместить на место i-ого
-        for (int j = i + 1; j < size; j++)  // для остальных элементов после i-ого
+        min = i; // Г§Г ГЇГ®Г¬ГЁГ­Г ГҐГ¬ ГЁГ­Г¤ГҐГЄГ± ГІГҐГЄГіГ№ГҐГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ 
+        // ГЁГ№ГҐГ¬ Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ Г·ГІГ®ГЎГ» ГЇГ®Г¬ГҐГ±ГІГЁГІГј Г­Г  Г¬ГҐГ±ГІГ® i-Г®ГЈГ®
+        for (int j = i + 1; j < size; j++)  // Г¤Г«Гї Г®Г±ГІГ Г«ГјГ­Г»Гµ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў ГЇГ®Г±Г«ГҐ i-Г®ГЈГ®
         {
-            if (num[j] < num[min]) // если элемент меньше минимального,
-                min = j;       // запоминаем его индекс в min
+            if (num[j] < num[min]) // ГҐГ±Г«ГЁ ГЅГ«ГҐГ¬ГҐГ­ГІ Г¬ГҐГ­ГјГёГҐ Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГЈГ®,
+                min = j;       // Г§Г ГЇГ®Г¬ГЁГ­Г ГҐГ¬ ГҐГЈГ® ГЁГ­Г¤ГҐГЄГ± Гў min
         }
-        temp = num[i];      // меняем местами i-ый и минимальный элементы
+        temp = num[i];      // Г¬ГҐГ­ГїГҐГ¬ Г¬ГҐГ±ГІГ Г¬ГЁ i-Г»Г© ГЁ Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІГ»
         num[i] = num[min];
         num[min] = temp;
     }
@@ -141,20 +141,20 @@ void selectionSort(T* num, int size)
 
 vector<int> selectionSort(vector<int> vec,int * iCount2_1, int *comCount2_1, int *excCount2_1)
 {
-    int min, temp; // для поиска минимального элемента и для обмена
+    int min, temp; // Г¤Г«Гї ГЇГ®ГЁГ±ГЄГ  Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  ГЁ Г¤Г«Гї Г®ГЎГ¬ГҐГ­Г 
     for (int i = 0; i < size(vec) - 1; i++)
     {
-        min = i; // запоминаем индекс текущего элемента
-        // ищем минимальный элемент чтобы поместить на место i-ого
-        for (int j = i + 1; j < size(vec); j++)  // для остальных элементов после i-ого
+        min = i; // Г§Г ГЇГ®Г¬ГЁГ­Г ГҐГ¬ ГЁГ­Г¤ГҐГЄГ± ГІГҐГЄГіГ№ГҐГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ 
+        // ГЁГ№ГҐГ¬ Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ Г·ГІГ®ГЎГ» ГЇГ®Г¬ГҐГ±ГІГЁГІГј Г­Г  Г¬ГҐГ±ГІГ® i-Г®ГЈГ®
+        for (int j = i + 1; j < size(vec); j++)  // Г¤Г«Гї Г®Г±ГІГ Г«ГјГ­Г»Гµ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў ГЇГ®Г±Г«ГҐ i-Г®ГЈГ®
         {
             *iCount2_1 += 1;
             *comCount2_1 += 1;
-            if (vec[j] < vec[min]) { // если элемент меньше минимального,
-                min = j;// запоминаем его индекс в min
+            if (vec[j] < vec[min]) { // ГҐГ±Г«ГЁ ГЅГ«ГҐГ¬ГҐГ­ГІ Г¬ГҐГ­ГјГёГҐ Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГЈГ®,
+                min = j;// Г§Г ГЇГ®Г¬ГЁГ­Г ГҐГ¬ ГҐГЈГ® ГЁГ­Г¤ГҐГЄГ± Гў min
             }   
         }
-        temp = vec[i];      // меняем местами i-ый и минимальный элементы
+        temp = vec[i];      // Г¬ГҐГ­ГїГҐГ¬ Г¬ГҐГ±ГІГ Г¬ГЁ i-Г»Г© ГЁ Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІГ»
         *excCount2_1 += 1;
         vec[i] = vec[min];
         vec[min] = temp;
@@ -162,16 +162,16 @@ vector<int> selectionSort(vector<int> vec,int * iCount2_1, int *comCount2_1, int
     return vec;
 }
 
-//// Сортировка пузырьком
+//// Г‘Г®Г°ГІГЁГ°Г®ГўГЄГ  ГЇГіГ§Г»Г°ГјГЄГ®Г¬
 template <typename T>
 void bubbleSort(T* arr, int size) {
-    T temp; // временная переменная для обмена элементов местами
+    T temp; // ГўГ°ГҐГ¬ГҐГ­Г­Г Гї ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г Гї Г¤Г«Гї Г®ГЎГ¬ГҐГ­Г  ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г¬ГҐГ±ГІГ Г¬ГЁ
 
-    // Сортировка массива пузырьком
+    // Г‘Г®Г°ГІГЁГ°Г®ГўГЄГ  Г¬Г Г±Г±ГЁГўГ  ГЇГіГ§Г»Г°ГјГЄГ®Г¬
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < size - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
-                // меняем элементы местами
+                // Г¬ГҐГ­ГїГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г¬ГҐГ±ГІГ Г¬ГЁ
                 temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
@@ -182,15 +182,15 @@ void bubbleSort(T* arr, int size) {
 
 template <typename T>
 vector<T> bubbleSort(vector<T> arr, int * iCount3_1, int * comCount3_1, int *excCount3_1) {
-    int temp; // временная переменная для обмена элементов местами
+    int temp; // ГўГ°ГҐГ¬ГҐГ­Г­Г Гї ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г Гї Г¤Г«Гї Г®ГЎГ¬ГҐГ­Г  ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г¬ГҐГ±ГІГ Г¬ГЁ
 
-    // Сортировка массива пузырьком
+    // Г‘Г®Г°ГІГЁГ°Г®ГўГЄГ  Г¬Г Г±Г±ГЁГўГ  ГЇГіГ§Г»Г°ГјГЄГ®Г¬
     for (int i = 0; i < size(arr) - 1; i++) {
         for (int j = 0; j < size(arr) - i - 1; j++) {
             *iCount3_1 += 1;
             *comCount3_1 += 1;
             if (arr[j] > arr[j + 1]) {
-                // меняем элементы местами
+                // Г¬ГҐГ­ГїГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г¬ГҐГ±ГІГ Г¬ГЁ
                 *excCount3_1 += 1;
                 temp = arr[j];
                 arr[j] = arr[j + 1];
@@ -202,7 +202,7 @@ vector<T> bubbleSort(vector<T> arr, int * iCount3_1, int * comCount3_1, int *exc
 }
 
 
-////Сортировка Хоара
+////Г‘Г®Г°ГІГЁГ°Г®ГўГЄГ  Г•Г®Г Г°Г 
 template<typename T>
 void hoaraSort(T* a, int first, int last,int n)
 {
@@ -241,7 +241,7 @@ std::vector<T> hoaraSort(const std::vector<T>& vec, int *iCount4_1,int * comCoun
         return vec;
     }
     *iCount4_1 += 1;
-    // Выбираем опорный элемент (pivot)
+    // Г‚Г»ГЎГЁГ°Г ГҐГ¬ Г®ГЇГ®Г°Г­Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ (pivot)
     T pivot = vec[vec.size() / 2];
 
     std::vector<T> left, right, equal;
@@ -265,11 +265,11 @@ std::vector<T> hoaraSort(const std::vector<T>& vec, int *iCount4_1,int * comCoun
 
 
 
-    // Рекурсивно сортируем левую и правую части
+    // ГђГҐГЄГіГ°Г±ГЁГўГ­Г® Г±Г®Г°ГІГЁГ°ГіГҐГ¬ Г«ГҐГўГіГѕ ГЁ ГЇГ°Г ГўГіГѕ Г·Г Г±ГІГЁ
     left = hoaraSort(left, iCount4_1, comCount4_1, excCount4_1);
     right = hoaraSort(right, iCount4_1, comCount4_1, excCount4_1);
 
-    // Собираем отсортированный вектор
+    // Г‘Г®ГЎГЁГ°Г ГҐГ¬ Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ Г­Г­Г»Г© ГўГҐГЄГІГ®Г°
     std::vector<T> sortedVec;
     sortedVec.insert(sortedVec.end(), left.begin(), left.end());
     sortedVec.insert(sortedVec.end(), equal.begin(), equal.end());
@@ -284,7 +284,7 @@ std::vector<double> hoaraSort1(const std::vector<double> vec) {
         return vec;
     }
     
-    // Выбираем опорный элемент (pivot)
+    // Г‚Г»ГЎГЁГ°Г ГҐГ¬ Г®ГЇГ®Г°Г­Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ (pivot)
     double pivot = vec[vec.size() / 2];
 
     std::vector<double> left, right, equal;
@@ -308,11 +308,11 @@ std::vector<double> hoaraSort1(const std::vector<double> vec) {
 
 
 
-    // Рекурсивно сортируем левую и правую части
+    // ГђГҐГЄГіГ°Г±ГЁГўГ­Г® Г±Г®Г°ГІГЁГ°ГіГҐГ¬ Г«ГҐГўГіГѕ ГЁ ГЇГ°Г ГўГіГѕ Г·Г Г±ГІГЁ
     left = hoaraSort1(left);
     right = hoaraSort1(right);
 
-    // Собираем отсортированный вектор
+    // Г‘Г®ГЎГЁГ°Г ГҐГ¬ Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ Г­Г­Г»Г© ГўГҐГЄГІГ®Г°
     std::vector<double> sortedVec;
     sortedVec.insert(sortedVec.end(), left.begin(), left.end());
     sortedVec.insert(sortedVec.end(), equal.begin(), equal.end());
@@ -350,10 +350,10 @@ vector<int> genPartSortedArray(int size, double partSort) {
         bool isUnique;
 
         do {
-            randomNumber = std::rand() % size; // Генерируем случайное число до size-1
+            randomNumber = std::rand() % size; // ГѓГҐГ­ГҐГ°ГЁГ°ГіГҐГ¬ Г±Г«ГіГ·Г Г©Г­Г®ГҐ Г·ГЁГ±Г«Г® Г¤Г® size-1
             isUnique = true;
 
-            // Проверяем, что число уникально в массиве
+            // ГЏГ°Г®ГўГҐГ°ГїГҐГ¬, Г·ГІГ® Г·ГЁГ±Г«Г® ГіГ­ГЁГЄГ Г«ГјГ­Г® Гў Г¬Г Г±Г±ГЁГўГҐ
             for (int j = 0; j < i; ++j) {
                 if (arr[j] == randomNumber) {
                     isUnique = false;
@@ -404,14 +404,14 @@ int binarySearch(vector<int>arr, int left, int right, int key)
         
         midd = int((left + right) / 2);
 
-        if (key < arr[midd])       // если искомое меньше значения в ячейке
-            right = midd - 1;      // смещаем правую границу поиска
-        else if (key > arr[midd])  // если искомое больше значения в ячейке
-            left = midd + 1;    // смещаем левую границу поиска
-        else                       // иначе (значения равны)
-            return midd;           // функция возвращает индекс ячейки
+        if (key < arr[midd])       // ГҐГ±Г«ГЁ ГЁГ±ГЄГ®Г¬Г®ГҐ Г¬ГҐГ­ГјГёГҐ Г§Г­Г Г·ГҐГ­ГЁГї Гў ГїГ·ГҐГ©ГЄГҐ
+            right = midd - 1;      // Г±Г¬ГҐГ№Г ГҐГ¬ ГЇГ°Г ГўГіГѕ ГЈГ°Г Г­ГЁГ¶Гі ГЇГ®ГЁГ±ГЄГ 
+        else if (key > arr[midd])  // ГҐГ±Г«ГЁ ГЁГ±ГЄГ®Г¬Г®ГҐ ГЎГ®Г«ГјГёГҐ Г§Г­Г Г·ГҐГ­ГЁГї Гў ГїГ·ГҐГ©ГЄГҐ
+            left = midd + 1;    // Г±Г¬ГҐГ№Г ГҐГ¬ Г«ГҐГўГіГѕ ГЈГ°Г Г­ГЁГ¶Гі ГЇГ®ГЁГ±ГЄГ 
+        else                       // ГЁГ­Г Г·ГҐ (Г§Г­Г Г·ГҐГ­ГЁГї Г°Г ГўГ­Г»)
+            return midd;           // ГґГіГ­ГЄГ¶ГЁГї ГўГ®Г§ГўГ°Г Г№Г ГҐГІ ГЁГ­Г¤ГҐГЄГ± ГїГ·ГҐГ©ГЄГЁ
 
-        if (left > right)          // если границы сомкнулись 
+        if (left > right)          // ГҐГ±Г«ГЁ ГЈГ°Г Г­ГЁГ¶Г» Г±Г®Г¬ГЄГ­ГіГ«ГЁГ±Гј 
             return -1;
     }
 }
@@ -425,14 +425,14 @@ int binarySearch1(vector<int>arr, int left, int right, int key,int * iCount)
         *iCount += 1;
         midd = int((left + right) / 2);
 
-        if (key < arr[midd])       // если искомое меньше значения в ячейке
-            right = midd - 1;      // смещаем правую границу поиска
-        else if (key > arr[midd])  // если искомое больше значения в ячейке
-            left = midd + 1;    // смещаем левую границу поиска
-        else                       // иначе (значения равны)
-            return midd;           // функция возвращает индекс ячейки
+        if (key < arr[midd])       // ГҐГ±Г«ГЁ ГЁГ±ГЄГ®Г¬Г®ГҐ Г¬ГҐГ­ГјГёГҐ Г§Г­Г Г·ГҐГ­ГЁГї Гў ГїГ·ГҐГ©ГЄГҐ
+            right = midd - 1;      // Г±Г¬ГҐГ№Г ГҐГ¬ ГЇГ°Г ГўГіГѕ ГЈГ°Г Г­ГЁГ¶Гі ГЇГ®ГЁГ±ГЄГ 
+        else if (key > arr[midd])  // ГҐГ±Г«ГЁ ГЁГ±ГЄГ®Г¬Г®ГҐ ГЎГ®Г«ГјГёГҐ Г§Г­Г Г·ГҐГ­ГЁГї Гў ГїГ·ГҐГ©ГЄГҐ
+            left = midd + 1;    // Г±Г¬ГҐГ№Г ГҐГ¬ Г«ГҐГўГіГѕ ГЈГ°Г Г­ГЁГ¶Гі ГЇГ®ГЁГ±ГЄГ 
+        else                       // ГЁГ­Г Г·ГҐ (Г§Г­Г Г·ГҐГ­ГЁГї Г°Г ГўГ­Г»)
+            return midd;           // ГґГіГ­ГЄГ¶ГЁГї ГўГ®Г§ГўГ°Г Г№Г ГҐГІ ГЁГ­Г¤ГҐГЄГ± ГїГ·ГҐГ©ГЄГЁ
 
-        if (left > right)          // если границы сомкнулись 
+        if (left > right)          // ГҐГ±Г«ГЁ ГЈГ°Г Г­ГЁГ¶Г» Г±Г®Г¬ГЄГ­ГіГ«ГЁГ±Гј 
             return -1;
     }
 }
@@ -441,15 +441,15 @@ int binarySearch1(vector<int>arr, int left, int right, int key,int * iCount)
 
 size_t barierSearch(vector<int> arr, int value, int * comCount) {
     if (size(arr) != 0) {
-        int last = arr[size(arr) - 1]; //Сохраним прежний элемент массива
-        arr[size(arr) - 1] = value; //Гарантируем, что value есть в массиве
-        //Есть гарантия того, что элемент есть в массиве, значит индекс можно не проверять
+        int last = arr[size(arr) - 1]; //Г‘Г®ГµГ°Г Г­ГЁГ¬ ГЇГ°ГҐГ¦Г­ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ Г¬Г Г±Г±ГЁГўГ 
+        arr[size(arr) - 1] = value; //ГѓГ Г°Г Г­ГІГЁГ°ГіГҐГ¬, Г·ГІГ® value ГҐГ±ГІГј Гў Г¬Г Г±Г±ГЁГўГҐ
+        //Г…Г±ГІГј ГЈГ Г°Г Г­ГІГЁГї ГІГ®ГЈГ®, Г·ГІГ® ГЅГ«ГҐГ¬ГҐГ­ГІ ГҐГ±ГІГј Гў Г¬Г Г±Г±ГЁГўГҐ, Г§Г­Г Г·ГЁГІ ГЁГ­Г¤ГҐГЄГ± Г¬Г®Г¦Г­Г® Г­ГҐ ГЇГ°Г®ГўГҐГ°ГїГІГј
         size_t i = 0;
-        for (i = 0; arr[i] != value; ++i) { *comCount += 1;//Одно условие в цикле
+        for (i = 0; arr[i] != value; ++i) { *comCount += 1;//ГЋГ¤Г­Г® ГіГ±Г«Г®ГўГЁГҐ Гў Г¶ГЁГЄГ«ГҐ
         }
-        arr[size(arr) - 1] = last; //Восстанавливаем последний элемент
+        arr[size(arr) - 1] = last; //Г‚Г®Г±Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ
         
-        if (i != (size(arr) - 1) || value == last) { //Не уткнулись в барьер или последний элемент был искомым
+        if (i != (size(arr) - 1) || value == last) { //ГЌГҐ ГіГІГЄГ­ГіГ«ГЁГ±Гј Гў ГЎГ Г°ГјГҐГ° ГЁГ«ГЁ ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ ГЎГ»Г« ГЁГ±ГЄГ®Г¬Г»Г¬
             return i;
         }
     }
