@@ -5,8 +5,10 @@
 #include <chrono>
 #include<string>
 #include <cmath>
+#include <windows.h>
 using namespace std;
-setlocale(0, "");
+
+
 ////Ãåíåðàöèÿ ìàññèâà ðàíäîìíûìè çíà÷åíèÿìè(íåïîâòîðÿþùèìèñÿ)
 
 vector<int> genRandArray(int size) {
@@ -99,7 +101,7 @@ void insertSort(T *arr, int n)
 
 vector<int> insertSort(vector<int> arr,int * iCount, int* comCount, int* excCount)
 {
-    for (int i = 0; i < size(arr); ++i)
+    for (int i = 0; i < arr.size(); ++i)
     {
         
         int j = i;
@@ -142,11 +144,11 @@ void selectionSort(T* num, int size)
 vector<int> selectionSort(vector<int> vec,int * iCount2_1, int *comCount2_1, int *excCount2_1)
 {
     int min, temp; // äëÿ ïîèñêà ìèíèìàëüíîãî ýëåìåíòà è äëÿ îáìåíà
-    for (int i = 0; i < size(vec) - 1; i++)
+    for (int i = 0; i < vec.size() - 1; i++)
     {
         min = i; // çàïîìèíàåì èíäåêñ òåêóùåãî ýëåìåíòà
         // èùåì ìèíèìàëüíûé ýëåìåíò ÷òîáû ïîìåñòèòü íà ìåñòî i-îãî
-        for (int j = i + 1; j < size(vec); j++)  // äëÿ îñòàëüíûõ ýëåìåíòîâ ïîñëå i-îãî
+        for (int j = i + 1; j < vec.size(); j++)  // äëÿ îñòàëüíûõ ýëåìåíòîâ ïîñëå i-îãî
         {
             *iCount2_1 += 1;
             *comCount2_1 += 1;
@@ -185,8 +187,8 @@ vector<T> bubbleSort(vector<T> arr, int * iCount3_1, int * comCount3_1, int *exc
     int temp; // âðåìåííàÿ ïåðåìåííàÿ äëÿ îáìåíà ýëåìåíòîâ ìåñòàìè
 
     // Ñîðòèðîâêà ìàññèâà ïóçûðüêîì
-    for (int i = 0; i < size(arr) - 1; i++) {
-        for (int j = 0; j < size(arr) - i - 1; j++) {
+    for (int i = 0; i < arr.size() - 1; i++) {
+        for (int j = 0; j < arr.size() - i - 1; j++) {
             *iCount3_1 += 1;
             *comCount3_1 += 1;
             if (arr[j] > arr[j + 1]) {
@@ -378,7 +380,7 @@ int linearSearch(T * arr, int size, T key) {
 
 template<typename T>
 int linearSearch(vector<T> vec, T key) {
-    for (int i = 0; i < size(vec); i++)
+    for (int i = 0; i < vec.size(); i++)
         if (vec[i] == key)
             return i;
     return -1;
@@ -386,7 +388,7 @@ int linearSearch(vector<T> vec, T key) {
 
 template<typename T>
 int linearSearch1(vector<T> vec, T key, int * iCount) {
-    for (int i = 0; i < size(vec); i++) {
+    for (int i = 0; i < vec.size(); i++) {
         if (vec[i] == key)
             return i;
             *iCount += 1;
@@ -440,16 +442,16 @@ int binarySearch1(vector<int>arr, int left, int right, int key,int * iCount)
 
 
 size_t barierSearch(vector<int> arr, int value, int * comCount) {
-    if (size(arr) != 0) {
-        int last = arr[size(arr) - 1]; //Ñîõðàíèì ïðåæíèé ýëåìåíò ìàññèâà
-        arr[size(arr) - 1] = value; //Ãàðàíòèðóåì, ÷òî value åñòü â ìàññèâå
+    if (arr.size() != 0) {
+        int last = arr[arr.size() - 1]; //Ñîõðàíèì ïðåæíèé ýëåìåíò ìàññèâà
+        arr[arr.size() - 1] = value; //Ãàðàíòèðóåì, ÷òî value åñòü â ìàññèâå
         //Åñòü ãàðàíòèÿ òîãî, ÷òî ýëåìåíò åñòü â ìàññèâå, çíà÷èò èíäåêñ ìîæíî íå ïðîâåðÿòü
         size_t i = 0;
         for (i = 0; arr[i] != value; ++i) { *comCount += 1;//Îäíî óñëîâèå â öèêëå
         }
-        arr[size(arr) - 1] = last; //Âîññòàíàâëèâàåì ïîñëåäíèé ýëåìåíò
+        arr[arr.size() - 1] = last; //Âîññòàíàâëèâàåì ïîñëåäíèé ýëåìåíò
         
-        if (i != (size(arr) - 1) || value == last) { //Íå óòêíóëèñü â áàðüåð èëè ïîñëåäíèé ýëåìåíò áûë èñêîìûì
+        if (i != (arr.size() - 1) || value == last) { //Íå óòêíóëèñü â áàðüåð èëè ïîñëåäíèé ýëåìåíò áûë èñêîìûì
             return i;
         }
     }

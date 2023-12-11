@@ -68,7 +68,8 @@ void task4_1(int len) {
 	cout << "Сортировка пузырьком ";
 	start = chrono::high_resolution_clock::now();
 	/*printArr(insertSort(vec));*/
-	bubbleSort(vec, iCount3_1, comCount3_1, excCount3_1);
+
+    bubbleSort(vec, iCount3_1, comCount3_1, excCount3_1);
 	end = chrono::high_resolution_clock::now();
 	dur = end - start;
 	cout << dur.count() << " ";
@@ -178,8 +179,10 @@ void task5_1(int size);
 void task5_2(int size, int flag, double partSort);
 void task5_2_2();
 void task5_3(int size);
+
+
 int main() {
-	setlocale(0, "");
+    SetConsoleOutputCP(CP_UTF8);
 	
 	cout << "/////Laba4 Task1/////" << endl;
 	task4_1(20);
@@ -286,7 +289,7 @@ void task5_3(int size1) {
 	int comCount = 0;
 	int* comCountP = &comCount;
 	auto start = chrono::high_resolution_clock::now();
-	barierSearch(vecc, vecc[size(vecc) - 1], comCountP);
+	barierSearch(vecc, vecc[vecc.size() - 1], comCountP);
 	auto end = chrono::high_resolution_clock::now();
 	auto dur = end - start;
 	cout << endl << "Время при поиске с барьером: " << dur.count() << " ";
