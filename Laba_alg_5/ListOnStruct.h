@@ -63,7 +63,7 @@ public:
             tail = node;
     }
 
-    void popBack() {
+    [[maybe_unused]] void popBack() {
         if (tail == nullptr) return;
         if (head == tail) {
             delete tail;
@@ -77,7 +77,7 @@ public:
         tail = node;
     }
 
-    Node *getAt(int k) {
+    Node *getAt(int k) const{
         Node *node = head;
         int n = 0;
         while (node && n != k && node->next) {
@@ -88,7 +88,11 @@ public:
     }
 
     void insert(double data, int index) {
-        Node *left = getAt(index);
+        int k;
+        if (index == 0){ pushFront(data);}
+        else if (index == len()-1) { pushBack(data);}
+        else {k = index - 1;};
+        Node *left = getAt(index - 1);
         if (left == nullptr) return;
 
         Node *right = left->next;
@@ -116,7 +120,7 @@ public:
         delete node;
     }
 
-    void printList() {
+    void printList() const {
         auto cur = head;
         while (cur != nullptr) {
             std::cout << cur->data << " ";
@@ -125,7 +129,7 @@ public:
         std::cout << std::endl;
     }
 
-    int len() {
+    int len() const{
         int c = 0;
         auto cur = head;
         while (cur != nullptr) {
@@ -178,7 +182,8 @@ void printA(int *arr, int n) {
     std::cout << std::endl;
 }
 
-int *change(int *arr, int n) {
+void change(int *&arr, int n) {
+
     int *temp = nullptr;
     int numTemp = n;
     int f = arr[0];
@@ -190,9 +195,25 @@ int *change(int *arr, int n) {
 
     }
     temp[n - 1] = f;
-    deleteArray(arr); // удаляем старый массив
-    return temp;
+    delete[] arr;
+    arr = temp;
 }
+//int *change(int *arr, int n) {
+//    int *temp = nullptr;
+//    int numTemp = n;
+//    int f = arr[0];
+//    int l = arr[n - 1];
+//    temp = createArray(temp, numTemp); // создаем временный массив
+//    for (int i = 0; i < n - 1; i++) {
+//        if (i == 0) temp[i] = l;
+//        else temp[i] = arr[i]; // копируем данные со старого массива
+//
+//    }
+//    temp[n - 1] = f;
+//    deleteArray(arr); // удаляем старый массив
+//    return temp;
+//}
+
 
 int *insert(int *arr, int number, int value, int index) //добавление элемента в конец массива
 {
@@ -226,68 +247,251 @@ int *deleteN(int *arr, int number, int index) //добавление элеме�
     return temp;
 }
 
-void task1(int t) {
-    if (t == 2) {
+//void task1(int t) {
+//    if (t == 2) {
+//
+//        int n;
+//        std::cout << "Введите число эл-ов массива: ";
+//        std::cin >> n;
+//////Создание динамического массива
+//        int *arr = new int[n];
+//////Заполнение массива эл-ми
+//        for (int i = 0; i < n; i++) {
+//            arr[i] = i;
+//        }
+//        std::cout << "Исходный массив: ";
+//        printA(arr, n);
+//
+//////Добавление эл-та в конец
+//        int *arr1 = addEnd(arr, n, 100);
+//        std::cout << "Добавление эл-та в конец: ";
+//        printA(arr1, n + 1);
+//
+//////Перестановка эл-ов местами
+//        int *arr2 = change(arr1, n + 1);
+//        std::cout << "Массив после перестановки: ";
+//        printA(arr2, n + 1);
+//////Добавление эл-та под заданным индексом
+//        int *arr3 = insert(arr2, n + 1, 999, 7);
+//        std::cout << "Вставка эл-та в массив под заданным индексом: ";
+//        printA(arr3, n + 2);
+//////Удаление эл-та под заданным индексом
+//        int *arr4 = deleteN(arr3, n + 2, 7);
+//        std::cout << "Удаление эл-та под заданным индексом: ";
+//        printA(arr4, n + 1);
+//    } else {
+//
+//////Создание динамической структуры
+//        OneLinkedList lst;
+//////Добавление первого эл-та
+//        lst.pushFront(1);
+//////Добавление эл-та в конец
+//        lst.pushBack(2);
+//////Заполнение списка
+//        for (int i = 3; i < 10; i++) {
+//            lst.pushBack(i);
+//        }
+//        lst.pushBack(10);
+//
+//        std::cout << "Исходный список: ";
+//        lst.printList();
+//////Перестановка местами(первый и последний эл-т)
+//        lst.change();
+//        std::cout << "Список после пeрестановки: ";
+//        lst.printList();
+//
+//////Базовые методы
+//        std::cout << "Длина списка: " << lst.len() << std::endl;
+//
+//        lst.insert(5.5, 4);
+//        std::cout << "Вставка эл-та в середину: ";
+//        lst.printList();
+//
+//        lst.erase(5);
+//        std::cout << "Удаление эл-та: ";
+//        lst.printList();
+//    }
+//}
 
-        int n;
-        std::cout << "Введите число эл-ов массива: ";
-        std::cin >> n;
-////Создание динамического массива
-        int *arr = new int[n];
-////Заполнение массива эл-ми
-        for (int i = 0; i < n; i++) {
-            arr[i] = i;
-        }
-        std::cout << "Исходный массив: ";
-        printA(arr, n);
-
-////Добавление эл-та в конец
-        int *arr1 = addEnd(arr, n, 100);
-        std::cout << "Добавление эл-та в конец: ";
-        printA(arr1, n + 1);
-
-////Перестановка эл-ов местами
-        int *arr2 = change(arr1, n + 1);
-        std::cout << "Массив после перестановки: ";
-        printA(arr2, n + 1);
-////Добавление эл-та под заданным индексом
-        int *arr3 = insert(arr2, n + 1, 999, 7);
-        std::cout << "Вставка эл-та в массив под заданным индексом: ";
-        printA(arr3, n + 2);
-////Удаление эл-та под заданным индексом
-        int *arr4 = deleteN(arr3, n + 2, 7);
-        std::cout << "Удаление эл-та под заданным индексом: ";
-        printA(arr4, n + 1);
-    } else {
-
-////Создание динамической структуры
-        OneLinkedList lst;
-////Добавление первого эл-та
-        lst.pushFront(1);
-////Добавление эл-та в конец
-        lst.pushBack(2);
-////Заполнение списка
-        for (int i = 3; i < 10; i++) {
-            lst.pushBack(i);
-        }
-        lst.pushBack(10);
-
-        std::cout << "Исходный список: ";
-        lst.printList();
-////Перестановка местами(первый и последний эл-т)
-        lst.change();
-        std::cout << "Список после пeрестановки: ";
-        lst.printList();
-
-////Базовые методы
-        std::cout << "Длина списка: " << lst.len() << std::endl;
-
-        lst.insert(5.5, 4);
-        std::cout << "Вставка эл-та в середину: ";
-        lst.printList();
-
-        lst.erase(5);
-        std::cout << "Удаление эл-та: ";
-        lst.printList();
+void addElementAtIndex(int*& arr, int& size, int& capacity, int value, int index) {
+    if (index < 0 || index > size) {
+        std::cout << "Недопустимый индекс: " << std::endl;;
     }
+
+    if (size == capacity) {
+
+        capacity = capacity +1;
+        int* newArr = new int[capacity];
+        for (int i = 0; i < size; ++i) {
+            newArr[i] = arr[i];
+        }
+        delete[] arr;
+        arr = newArr;
+    }
+
+
+    for (int i = size; i > index; --i) {
+        arr[i] = arr[i - 1];
+    }
+
+
+    arr[index] = value;
+
+    ++size;
+}
+
+void removeElementsAfterMax1(int*& arr, int& size) {
+    if (size == 0) {
+        return;
+    }
+
+    int maxIndex = 0;
+    for (int i = 1; i < size; ++i) {
+        if (arr[i] > arr[maxIndex]) {
+            maxIndex = i;
+        }
+    }
+
+    size = maxIndex + 1;
+}
+
+void removeElements1(int*& arr, int& size, int index) {
+    if (index >= 0 && index < size) {
+        for (int i = index; i < size - 1; ++i) {
+            arr[i] = arr[i + 1];
+        }
+        --size;
+    }
+    else {
+        std::cout << "Недопустимый индекс. Невозможно удалить элемент.\n";
+    }
+}
+
+
+void displayElements1(const int* arr, int size) {
+    std::cout << "Элементы: ";
+    for (int i = 0; i < size; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << "\n";
+}
+
+void task1_1(){
+    int choice;
+    OneLinkedList lst;
+    int *arrayList = nullptr;
+    int arraySize = 0;
+    int arrayCapacity = 0;
+
+    do {
+        std::cout << "Выберите реализацию:\n"
+                     "1. Цепное представление\n"
+                     "2. Сплошное представление\n"
+                     "3. Выйти\n";
+        std::cout << "Ваш выбор: ";
+        std::cin >> choice;
+        std::cout << std::endl;
+        switch (choice) {
+            case 1: {
+                int action, data;
+
+                do {
+                    std::cout << std::endl <<
+                              "1. Добавить новый элемент\n"
+                              "2. Удалить элемент по индексу\n"
+                              "3. Поменять местами первый и последний эл-ты\n"
+                              "4. Вывести элементы\n"
+                              "5. Выйти\n";
+                    std::cout << "Выберите действие: ";
+                    std::cin >> action;
+
+                    switch (action) {
+                        case 1:
+                            std::cout << "Введите значение элемента: ";
+                            std::cin >> data;
+                            int index;
+                            std::cout << "Введите индекс: ";
+                            std::cin >> index;
+
+                            lst.insert(data, index);
+
+                            break;
+                        case 2:
+                            std::cout << "Введите индекс элемента для удаления: ";
+                            std::cin >> index;
+
+                            lst.erase(index);
+
+                            break;
+                        case 3:
+                            lst.change();
+                            std::cout << std::endl << "Первый и последний эл-ты переставлены местами.\n";
+                            break;
+                        case 4:
+                            lst.printList();
+                            break;
+                        case 5:
+                            std::cout << "Выход из цепного представления.\n";
+                            break;
+                        default:
+                            std::cout << "Неверный выбор. Повторите ввод.\n";
+                    }
+                } while (action != 5);
+
+                break;
+            }
+            case 2: {
+                int action, data;
+
+                do {
+                    std::cout << "1. Добавить новый элемент\n"
+                                 "2. Удалить элемент по индексу\n"
+                                 "3. Переставить первый и последний эл-ты местами\n"
+                                 "4. Вывести элементы\n"
+                                 "5. Выйти\n";
+                    std::cout << "Выберите действие: ";
+                    std::cin >> action;
+
+                    switch (action) {
+                        case 1:
+                            std::cout << "Введите значение элемента: ";
+                            std::cin >> data;
+                            int index;
+                            std::cout << "Введите индекс: ";
+                            std::cin >> index;
+
+                            addElementAtIndex(arrayList, arraySize, arrayCapacity, data, index);
+                            break;
+                        case 2:
+                            std::cout << "Введите индекс элемента для удаления: ";
+                            std::cin >> index;
+
+                            removeElements1(arrayList, arraySize, index);
+                            break;
+                        case 3:
+
+
+                            change(arrayList, arraySize);
+                            std::cout << "Первый и последний эл-т переставлены местами.\n";
+                            break;
+                        case 4:
+                            displayElements1(arrayList, arraySize);
+                            break;
+                        case 5:
+                            std::cout << "Выход из сплошного представления.\n";
+                            break;
+                        default:
+                            std::cout << "Неверный выбор. Повторите ввод.\n";
+                    }
+                } while (action != 5);
+
+                break;
+            }
+            case 3:
+                std::cout << "Программа завершена.\n";
+                break;
+            default:
+                std::cout << "Неверный выбор. Повторите ввод.\n";
+        }
+    } while (choice != 3);
 }
